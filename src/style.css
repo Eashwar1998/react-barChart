@@ -1,0 +1,19 @@
+.bc {
+  display: flex;
+  flex-direction: row;
+}
+.bc h3 {
+  width: 30%;
+}
+.bc div {
+  display: inline-block;
+  width: 50%;
+  vertical-align: top;
+}
+.cc {
+  display: flex;
+  width: 50%;
+  vertical-align: top;
+  justify-content: center;
+  align-items: center;
+}
