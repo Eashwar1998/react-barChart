@@ -8,11 +8,13 @@ import {
   Cell,
   XAxis,
   YAxis,
+  Line,
   CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
   LabelList,
+  ReferenceLine,
 } from 'recharts';
 const data = [
   {
@@ -131,19 +133,29 @@ export default function App() {
         </div>
         <div>
           <BarChart
-            width={500}
+            width={700}
             height={250}
             data={Mydata}
             layout="vertical"
-            margin={{ top: 5, right: 5, bottom: 5, left: 250 }}
+            margin={{ top: 5, right: 50, bottom: 5, left: 250 }}
+            maxBarSize={20} //width of the bar at max
           >
-            <CartesianGrid />
             <XAxis type="number" hide />
             <YAxis dataKey="name" type="category" hide />
-            <Bar dataKey="value" stackId="a" fill="#82ca9d">
+            <Bar
+              dataKey="value"
+              stackId="a"
+              fill="#82ca9d"
+              legendType="diamond"
+              minPointSize={1} //min width of the vertical bars
+              unit="#"
+            >
+              <Tooltip formatter={(value) => [`${value}$`, 'Value']}></Tooltip>
               <LabelList dataKey="value" position="right" />
               <LabelList dataKey="name" position="left" />
             </Bar>
+
+            <Line type="monotone" dataKey="name" stroke="#234" />
           </BarChart>
         </div>
       </div>
