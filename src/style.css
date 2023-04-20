@@ -6,9 +6,10 @@
   width: 30%;
 }
 .bc div {
-  display: inline-block;
+ 
   width: 50%;
   vertical-align: top;
+  height: 150px;
 }
 .cc {
   display: flex;

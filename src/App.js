@@ -58,7 +58,7 @@ const data = [
     amt: 2100,
   },
 ];
-const Mydata = [
+let Mydata = [
   { name: 'intel', value: 98, ptamba: 'Yes' },
   { name: 'amd', value: 4, ptamba: 'No' },
   { name: 'amd', value: 4, ptamba: 'Yes' },
@@ -68,7 +68,7 @@ const Mydata = [
 ];
 export default function App() {
   const dataAligner = (data) => {
-    sortedData = [];
+    let sortedData = [];
     sortedData = [
       ...data.filter((item) => {
         return item.ptamba === 'Yes';
@@ -82,8 +82,8 @@ export default function App() {
     ];
     return sortedData;
   };
-
   console.log(dataAligner(Mydata));
+  Mydata = dataAligner(Mydata);
 
   return (
     <>
@@ -106,34 +106,38 @@ export default function App() {
         <h3>Demo count</h3>
       </div>
       <div className="bc">
-        <div className="cc">Yes</div>
         <div>
-          <BarChart
-            width={500}
-            height={250}
-            data={Mydata}
-            layout="vertical"
-            margin={{ top: 5, right: 5, bottom: 5, left: 150 }}
-          >
-            <XAxis type="number" hide />
-            <YAxis dataKey="name" type="category" hide />
-            <Bar dataKey="value" stackId="a" fill="#82ca9d">
-              <LabelList dataKey="value" position="right" />
-              <LabelList dataKey="name" position="left" />
-            </Bar>
-          </BarChart>
+          <div>Yes</div>
+          <div>No</div>
         </div>
-      </div>
-      <div className="bc">
-        <div className="cc">No</div>
+        <div>
+          {Mydata.map((item) => {
+            if (item.ptamba === 'Yes')
+              return (
+                <p
+                  style={{
+                    padding: '2px',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {item.name}
+                </p>
+              );
+          })}
+          {Mydata.map((item) => {
+            if (item.ptamba === 'No')
+              return <p style={{ padding: '2px' }}>{item.name}</p>;
+          })}
+        </div>
         <div>
           <BarChart
             width={500}
             height={250}
             data={Mydata}
             layout="vertical"
-            margin={{ top: 5, right: 5, bottom: 5, left: 150 }}
+            margin={{ top: 5, right: 5, bottom: 5, left: 250 }}
           >
+            <CartesianGrid />
             <XAxis type="number" hide />
             <YAxis dataKey="name" type="category" hide />
             <Bar dataKey="value" stackId="a" fill="#82ca9d">
